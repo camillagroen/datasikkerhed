@@ -1,0 +1,60 @@
+$purple: #9100E5;
+$darkpurple: #45026D;
+$white: #FFF;
+
+@mixin resetParagraph {
+    p {
+        margin: 0;
+    }
+}
+
+@mixin resetButton {
+    button {
+        background-color: transparent;
+        border: 0;
+        padding: 0;
+    }
+}
+
+@mixin resetList {
+    ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+            list-style-type: none;
+        }
+    }
+}
+
+@mixin link {
+    button {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        
+        p:first-child{
+            border-radius: 5px;
+            background: $purple;
+            color: $white;
+            text-align: center;
+            padding: 2px 5px;
+        }
+        
+        p:nth-child(2) {
+            text-decoration: underline;
+            text-underline-position: from-font;
+        }
+
+        &:hover {
+            cursor: pointer;
+            p:first-child {
+                background-color: $darkpurple;
+            }
+            p:nth-child(2) {
+                color: $darkpurple;
+                text-decoration: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,81 @@
+$black: #000;
+
+@use "mixins";
+
+$layout-breakpoint-desktop: 768px;
+@media screen and (min-width: $layout-breakpoint-desktop) {
+    $defaultFlexGap: 20px;
+}
+$defaultFlexGap: 16px;
+$defaultFontSize: 20px;
+$defaultFontFamily: Karla;
+$defaultFontWeight: 400;
+
+body {
+    margin: 1rem auto;
+    @media screen and (min-width: $layout-breakpoint-desktop) {
+        margin: 2rem auto;
+    }
+    
+    @include mixins.resetParagraph;
+    @include mixins.resetButton;
+    @include mixins.resetList;
+    
+    p {
+        font-size: $defaultFontSize;
+        font-family: $defaultFontFamily;
+        color: $black;
+        text-align: left;
+        font-style: normal;
+        font-weight: $defaultFontWeight;
+        line-height: normal;
+        text-decoration-style: solid;
+    }
+}
+
+.content {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: $defaultFlexGap;
+    @media (min-width: $layout-breakpoint-desktop) {
+        width: 600px;
+    }
+
+    & > p, .option, .restart-button {
+        margin: 0 26px;
+    }
+
+    .error, .warning, .success {
+        font-weight: bold;
+
+        &.error {
+            color: #F00;
+        }
+        
+        &.warning {
+            color: #CB8300;
+        }
+        
+        &.success {
+            color: #008000;
+        }
+    }
+
+    .screenshot {
+        width: 100%;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: $defaultFlexGap;
+    }
+
+    .restart-button {
+        margin-top: 10px;
+    }
+
+    @include mixins.link
+}
+

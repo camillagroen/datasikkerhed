@@ -1,0 +1,97 @@
+body {
+  margin: 1rem auto;
+}
+@media (min-width: 768px) {
+  body {
+    margin: 2rem auto;
+  }
+}
+body p {
+  margin: 0;
+}
+body button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+body ul {
+  padding: 0;
+  margin: 0;
+}
+body ul li {
+  list-style-type: none;
+}
+body p {
+  font-size: 20px;
+  font-family: Karla;
+  color: #000;
+  text-align: left;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-style: solid;
+}
+
+.content {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+@media (min-width: 768px) {
+  .content {
+    width: 600px;
+  }
+}
+.content > p, .content .option, .content .restart-button {
+  margin: 0 26px;
+}
+.content .error, .content .warning, .content .success {
+  font-weight: bold;
+}
+.content .error.error, .content .warning.error, .content .success.error {
+  color: #F00;
+}
+.content .error.warning, .content .warning.warning, .content .success.warning {
+  color: #CB8300;
+}
+.content .error.success, .content .warning.success, .content .success.success {
+  color: #008000;
+}
+.content .screenshot {
+  width: 100%;
+}
+.content .options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.content .restart-button {
+  margin-top: 10px;
+}
+.content button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.content button p:first-child {
+  border-radius: 5px;
+  background: #9100E5;
+  color: #FFF;
+  text-align: center;
+  padding: 2px 5px;
+}
+.content button p:nth-child(2) {
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+.content button:hover {
+  cursor: pointer;
+}
+.content button:hover p:first-child {
+  background-color: #45026D;
+}
+.content button:hover p:nth-child(2) {
+  color: #45026D;
+  text-decoration: none;
+}/*# sourceMappingURL=styles.css.map */
