@@ -1,4 +1,6 @@
-restoreInitialState();
+// Projekt af Camilla Grøn
+
+restoreInitialState(); 
 
 const OPTION_KEYS = ["A", "B"];
 
