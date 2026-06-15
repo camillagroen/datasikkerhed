@@ -1,83 +1,98 @@
 // Projekt af Camilla Grøn
 
-$black: #000;
+/* Denne SCSS-fil er min arbejdsfil til styling.
+   Browseren læser ikke SCSS direkte, så filen compileres til css/styles.css.
+   HTML-filen linker derfor til styles.css og ikke til denne fil. */
 
-@use "mixins";
+/* --------------------------------------------------------
+ - VARIABLER OG SCSS MODULES
+ ---------------------------------------------------------- */
 
-$layout-breakpoint-desktop: 768px;
-@media screen and (min-width: $layout-breakpoint-desktop) {
-    $defaultFlexGap: 20px;
+$black: #000; /* Sort farve brugt til standard brødtekst */
+
+@use "mixins"; /* Henter _mixins.scss som modul, så mixins kan bruges med mixins.mixinNavn */
+
+$layout-breakpoint-desktop: 768px; /* Breakpoint til desktop/tablet-layout */
+@media screen and (min-width: $layout-breakpoint-desktop) { /* Media query til større skærme */
+    $defaultFlexGap: 20px; /* SCSS-variabel sat inde i media query. Den laver ikke i sig selv en CSS-regel, men viser intentionen om større gap på desktop */
 }
-$defaultFlexGap: 16px;
-$defaultFontSize: 20px;
-$defaultFontFamily: Karla;
-$defaultFontWeight: 400;
+$defaultFlexGap: 16px;        /* Standardafstand mellem elementer i layoutet */
+$defaultFontSize: 20px;       /* Standard skriftstørrelse til p-tags */
+$defaultFontFamily: Karla;    /* Standard fontfamilie, som importeres fra Google Fonts i HTML */
+$defaultFontWeight: 400;      /* Standard font-weight til brødtekst */
 
-body {
-    margin: 1rem auto;
-    @media screen and (min-width: $layout-breakpoint-desktop) {
+/* --------------------------------------------------------
+ - GENERELLE INDSTILLINGER FOR SIDEN
+ ---------------------------------------------------------- */
+
+body { /* Body er det synlige dokumentområde. Her sættes grundlæggende spacing og resets */
+    margin: 1rem auto; /* Luft over/under siden og automatisk centrering vandret */
+    @media screen and (min-width: $layout-breakpoint-desktop) { /* På større skærme gives der mere luft omkring siden */
         margin: 2rem auto;
     }
     
-    @include mixins.resetParagraph;
-    @include mixins.resetButton;
-    @include mixins.resetList;
+    @include mixins.resetParagraph; /* Kalder mixin, som fjerner standard-margin fra p-tags */
+    @include mixins.resetButton;    /* Kalder mixin, som fjerner browserens standard button-styling */
+    @include mixins.resetList;      /* Kalder mixin, som fjerner standard styling fra ul/li */
     
-    p {
-        font-size: $defaultFontSize;
-        font-family: $defaultFontFamily;
-        color: $black;
-        text-align: left;
-        font-style: normal;
-        font-weight: $defaultFontWeight;
-        line-height: normal;
-        text-decoration-style: solid;
+    p { /* Fælles styling for alle p-tags på siden */
+        font-size: $defaultFontSize;       /* Bruger variabel til skriftstørrelse */
+        font-family: $defaultFontFamily;   /* Bruger variabel til fontfamilie */
+        color: $black;                     /* Bruger farvevariabel til tekstfarve */
+        text-align: left;                  /* Venstrestiller teksten */
+        font-style: normal;                /* Sikrer almindelig font-style */
+        font-weight: $defaultFontWeight;   /* Bruger variabel til font-weight */
+        line-height: normal;               /* Bruger browserens normale linjehøjde */
+        text-decoration-style: solid;      /* Sørger for almindelig fuldt optrukket understregning, når tekst understreges */
     }
 }
 
-.content {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: $defaultFlexGap;
-    @media (min-width: $layout-breakpoint-desktop) {
+/* --------------------------------------------------------
+ - HOVEDCONTAINER OG SCENARIEINDHOLD
+ ---------------------------------------------------------- */
+
+.content { /* Main-containeren for hele scenariet. JavaScript udskifter indhold inde i denne container */
+    margin: auto;                 /* Centrerer containeren vandret */
+    display: flex;                /* Gør containeren til flexbox */
+    flex-direction: column;       /* Lægger tekst, billede og valgmuligheder under hinanden */
+    gap: $defaultFlexGap;         /* Bruger SCSS-variabel til afstand mellem elementerne */
+    @media (min-width: $layout-breakpoint-desktop) { /* På større skærme begrænses bredden, så indholdet ikke bliver for bredt */
         width: 600px;
     }
 
-    & > p, .option, .restart-button {
-        margin: 0 26px;
+    & > p, .option, .restart-button { /* & refererer til .content. Reglen rammer direkte p-tags, valgmuligheder og prøv-igen-knappen */
+        margin: 0 26px; /* Giver vandret luft på tekst og knapper, så de ikke ligger helt ud til kanten */
     }
 
-    .error, .warning, .success {
-        font-weight: bold;
+    .error, .warning, .success { /* Fælles styling for de tre typer resultatbeskeder, rammes på class */
+        font-weight: bold; /* Gør resultatoverskriften tydeligere */
 
-        &.error {
+        &.error { /* Når elementet både har klassen error og ligger i denne gruppe, får det rød farve */
             color: #F00;
         }
         
-        &.warning {
+        &.warning { /* Warning bruges til mellem-resultat, hvor brugeren opdagede phishing, men ikke stoppede det helt */
             color: #CB8300;
         }
         
-        &.success {
+        &.success { /* Success bruges til det gode udfald, hvor brugeren rapporterer phishing-angrebet */
             color: #008000;
         }
     }
 
-    .screenshot {
-        width: 100%;
+    .screenshot { /* Billedet som viser den aktuelle scene */
+        width: 100%; /* Billedet fylder hele containerens bredde og skalerer responsivt */
     }
 
-    .options {
-        display: flex;
-        flex-direction: column;
-        gap: $defaultFlexGap;
+    .options { /* Container for A/B-valgmulighederne */
+        display: flex;              /* Aktiverer flexbox for valgene */
+        flex-direction: column;     /* Viser valgene under hinanden */
+        gap: $defaultFlexGap;       /* Bruger samme standardafstand mellem valgene */
     }
 
-    .restart-button {
-        margin-top: 10px;
+    .restart-button { /* Knap som vises på resultatsiderne, så brugeren kan prøve scenariet igen */
+        margin-top: 10px; /* Lidt ekstra luft over restart-knappen */
     }
 
-    @include mixins.link
+    @include mixins.link /* Kalder link-mixinen, som styler alle knapper inde i .content */
 }
-
