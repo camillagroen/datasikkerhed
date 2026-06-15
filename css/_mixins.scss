@@ -1,59 +1,85 @@
-$purple: #9100E5;
-$darkpurple: #45026D;
-$white: #FFF;
+// Projekt af Camilla Grøn
 
-@mixin resetParagraph {
+/* Denne fil starter med underscore, fordi den er en SCSS partial.
+   Det betyder, at filen ikke bruges direkte af browseren.
+   Den hentes ind i styles.scss med @use og bliver derefter en del af den kompilerede styles.css-fil. */
+
+/* --------------------------------------------------------
+ - FARVEVARIABLER TIL MIXINS
+ ---------------------------------------------------------- */
+
+$purple: #9100E5;     /* Lilla farve til A/B-labels på knapperne */
+$darkpurple: #45026D; /* Mørkere lilla farve til hover-effekt */
+$white: #FFF;         /* Hvid tekstfarve */
+
+/* --------------------------------------------------------
+ - MIXIN: RESET AF PARAGRAFFER
+ ---------------------------------------------------------- */
+
+@mixin resetParagraph { /* Mixin med reset-regel for p-tags. Bruges for at fjerne browserens standard-margin */
     p {
-        margin: 0;
+        margin: 0; /* Fjerner default margin, så spacing styres manuelt med gap og egne regler */
     }
 }
 
-@mixin resetButton {
+/* --------------------------------------------------------
+ - MIXIN: RESET AF KNAPPER
+ ---------------------------------------------------------- */
+
+@mixin resetButton { /* Mixin med reset-regler for button-tags. Gør det lettere at style knapperne selv */
     button {
-        background-color: transparent;
-        border: 0;
-        padding: 0;
+        background-color: transparent; /* Fjerner browserens standard baggrund på knapper */
+        border: 0;                     /* Fjerner browserens standard kant */
+        padding: 0;                    /* Fjerner browserens standard indvendige afstand */
     }
 }
 
-@mixin resetList {
+/* --------------------------------------------------------
+ - MIXIN: RESET AF LISTER
+ ---------------------------------------------------------- */
+
+@mixin resetList { /* Mixin med reset-regler for ul/li, så valgmulighederne ikke ligner en almindelig punktopstilling */
     ul {
-        padding: 0;
-        margin: 0;
+        padding: 0; /* Fjerner standard indrykning på listen */
+        margin: 0;  /* Fjerner standard margin på listen */
 
         li {
-            list-style-type: none;
+            list-style-type: none; /* Fjerner bullets fra listeelementerne */
         }
     }
 }
 
-@mixin link {
+/* --------------------------------------------------------
+ - MIXIN: STYLING AF VALGKNAPPER
+ ---------------------------------------------------------- */
+
+@mixin link { /* Mixin med fælles styling for knapperne i scenariet. Genbruges i styles.scss med @include */
     button {
-        display: flex;
-        gap: 8px;
-        align-items: center;
+        display: flex;       /* Lægger A/B-label og valgtekst på samme linje */
+        gap: 8px;            /* Afstand mellem bogstav-label og tekst */
+        align-items: center; /* Centrerer indholdet lodret i knappen */
         
-        p:first-child{
-            border-radius: 5px;
-            background: $purple;
-            color: $white;
-            text-align: center;
-            padding: 2px 5px;
+        p:first-child{ /* Rammer det første p-tag i knappen, altså A/B-labelen */
+            border-radius: 5px;  /* Afrunder hjørnerne på labelen */
+            background: $purple; /* Bruger lilla variabel som baggrundsfarve */
+            color: $white;       /* Bruger hvid variabel til tekstfarve */
+            text-align: center;  /* Centrerer bogstavet inde i labelen */
+            padding: 2px 5px;    /* Giver labelen lidt luft rundt om bogstavet */
         }
         
-        p:nth-child(2) {
-            text-decoration: underline;
-            text-underline-position: from-font;
+        p:nth-child(2) { /* Rammer det andet p-tag i knappen, altså selve valgteksten */
+            text-decoration: underline;            /* Understreger valgteksten, så den ligner noget klikbart */
+            text-underline-position: from-font;    /* Placering af understregning følger fontens egen indstilling */
         }
 
-        &:hover {
-            cursor: pointer;
-            p:first-child {
-                background-color: $darkpurple;
+        &:hover { /* & betyder den aktuelle selector. Her bliver det til button:hover i den kompilerede CSS */
+            cursor: pointer; /* Viser med cursoren, at knappen kan klikkes på */
+            p:first-child { /* Ændrer A/B-labelen ved hover */
+                background-color: $darkpurple; /* Gør labelen mørkere, når brugeren holder musen over knappen */
             }
-            p:nth-child(2) {
-                color: $darkpurple;
-                text-decoration: none;
+            p:nth-child(2) { /* Ændrer valgteksten ved hover */
+                color: $darkpurple;     /* Gør valgteksten mørkelilla ved hover */
+                text-decoration: none;  /* Fjerner understregning ved hover som visuel feedback */
             }
         }
     }
