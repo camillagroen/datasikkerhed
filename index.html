@@ -1,38 +1,58 @@
-<!DOCTYPE html> <!-- Projekt af Camilla Grøn -->
-<html lang="da"></html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Phishing scenarie</title>
-        <link rel="stylesheet" href="css/styles.css" />
-        <script src="js/script.js" defer></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <main class="content">    
-            <p class="dynamic-text">Du har fået en email fra skolens IT afdeling, som informerer dig om, at det er nødvendigt at gendanne dit kodeord.</p>
-            <p>Hvad gør du?</p>
+<!-- Projekt af Camilla Grøn -->
 
-            <img class="screenshot" src="img/landing.png" alt="skærmbillede"/>    
-            
-            <p>Vælg en mulighed:</p>
+<!---------------------------------------------------------- 
+ Datasikkerhedsprojekt: Phishing scenarie
+ ---------------------------------------------------------->
 
-            <ul class="options">
-                <li class="option">
-                    <button class="optionA">
-                        <p>A</p>
-                        <p>Jeg skynder mig at klikke på knappen “Genopret password”</p>
-                    </button>
-                </li>
-                <li class="option">
-                    <button class="optionB">
-                        <p>B</p>
-                        <p>Jeg tjekker at afsenderens emailadresse er officiel</p>
-                    </button>
-                </li>
-            </ul>
-        </main>
-    </body>
+<!DOCTYPE html> <!-- Type af dokument. Fortæller browseren, at siden bruger moderne HTML -->
+<html lang="da"></html> <!-- Sprog på siden. Bruges bl.a. af browser og skærmlæsere til at forstå, at indholdet er dansk -->
+
+<!-- HEAD START -->
+<head> <!-- Head indeholder information og ressourcer, som browseren bruger, men som ikke vises direkte på siden -->
+    <meta charset="UTF-8"> <!-- Tegnsæt. UTF-8 gør, at danske bogstaver som æ, ø og å vises korrekt -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Gør siden responsiv ved at tilpasse bredden til brugerens skærm -->
+    <title>Phishing scenarie</title> <!-- Titel som vises i browserfanen -->
+    <link rel="stylesheet" href="css/styles.css" /> <!-- Kalder på den kompilerede CSS-fil. Browseren læser CSS, ikke SCSS direkte -->
+    <script src="js/script.js" defer></script> <!-- Kalder på JavaScript-filen. defer gør, at scriptet først kører, når HTML'en er læst ind -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Forbereder forbindelse til Google Fonts, så fonten kan loades hurtigere -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Forbereder forbindelse til font-filerne fra Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"> <!-- Importerer fonten Karla, som bruges i projektets styling -->
+</head>
+<!-- /HEAD SLUT -->
+
+<!-- BODY START -->
+<body> <!-- Body er alt det indhold, som brugeren kan se og interagere med i browseren -->
+
+    <!-- INDHOLD START -->
+    <main class="content"> <!-- Main er sidens hovedindhold. Klassen content bruges både til styling og som container for scenariet -->    
+        <p class="dynamic-text">Du har fået en email fra skolens IT afdeling, som informerer dig om, at det er nødvendigt at gendanne dit kodeord.</p> <!-- Første scenarietekst. Klassen dynamic-text bruges af JavaScript til at udskifte teksten, når brugeren vælger en mulighed -->
+        <p>Hvad gør du?</p> <!-- Spørgsmål til brugeren, som sætter scenariet i gang -->
+
+        <img class="screenshot" src="img/landing.png" alt="skærmbillede"/> <!-- Startbillede til scenariet. Klassen screenshot bruges af JavaScript til at skifte billede undervejs -->    
+        
+        <p>Vælg en mulighed:</p> <!-- Introducerer de to handlingsmuligheder -->
+
+        <!-- VALGMULIGHEDER START -->
+        <ul class="options"> <!-- Liste med brugerens valg. JavaScript finder knapperne inde i listen og tilføjer klik-funktionalitet -->
+            <li class="option"> <!-- Første valgmulighed. Klassen option bruges af JavaScript til at finde og opdatere hvert valg -->
+                <button class="optionA"> <!-- Button bruges, fordi valget udløser en handling på samme side i stedet for at åbne en ny side -->
+                    <p>A</p> <!-- Bogstav-label, som viser brugeren at dette er mulighed A -->
+                    <p>Jeg skynder mig at klikke på knappen “Genopret password”</p> <!-- Teksten på første valg. JavaScript udskifter denne tekst i de næste scener -->
+                </button>
+            </li>
+            <li class="option"> <!-- Anden valgmulighed. Har samme struktur som første valg, så JavaScript kan behandle begge knapper ens -->
+                <button class="optionB"> <!-- Button til mulighed B -->
+                    <p>B</p> <!-- Bogstav-label, som viser brugeren at dette er mulighed B -->
+                    <p>Jeg tjekker at afsenderens emailadresse er officiel</p> <!-- Teksten på andet valg. JavaScript udskifter denne tekst i de næste scener -->
+                </button>
+            </li>
+        </ul>
+        <!-- /VALGMULIGHEDER SLUT -->
+
+    </main>
+    <!-- /INDHOLD SLUT -->
+
+</body>
+<!-- /BODY SLUT -->
 </html>
+
